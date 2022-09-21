@@ -5,6 +5,7 @@
 # become the root / admin user via: sudo su -
 #1. Create nexus user to manage the nexus
 # As a good security practice, Nexus is not advised to run nexus service as a root user, so create a new user called nexus and grant sudo access to manage nexus services as follows.
+sudo hostnamectl hostname nexus
 useradd nexus
 #4 Give sudo access to nexus user
 sudo echo "nexus ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/nexus
