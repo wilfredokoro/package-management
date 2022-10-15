@@ -8,9 +8,9 @@
 sudo useradd sonar
 # 2. Grand sudo access to sonar user
 sudo echo "sonar ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/sonar
-sudo chown -R sonar:sonar /opt/sonarqube/
-sudo chmod -R 775 /opt/sonarqube/
-hostname sonar
+#sudo chown -R sonar:sonar /opt/sonarqube/
+#sudo chmod -R 775 /opt/sonarqube/
+sudo hostnamectl set-hostname sonar
 sudo su - sonar
 ## 3. Enable PasswordAuthentication
 sudo sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication yes" /etc/ssh/sshd_config
@@ -25,12 +25,12 @@ sudo yum install jdk-8u131-linux-x64.rpm -y
 sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.8.zip
 sudo unzip sonarqube-7.8.zip
 sudo rm -rf sonarqube-7.8.zip
-sudo mv sonarqube-7.8 sonarqube
-
+sudo mv sonarqube-7.8 /opt/sonarqube
+sudo chown -R sonar:sonar /opt/sonarqube/
+sudo chmod -R 775 /opt/sonarqube/
 # start sonarqube as sonar user using relative path
-sudo su - sonar  
-cd /opt/sonarqube/bin/linux-x86-64/ 
-sh sonar.sh start
+#cd /opt/sonarqube/bin/linux-x86-64/ 
+#sh sonar.sh start
 # or start sonarqube as sonar user using absolute path
 sh /opt/sonarqube/bin/linux-x86-64/sonar.sh start 
 sh /opt/sonarqube/bin/linux-x86-64/sonar.sh status
