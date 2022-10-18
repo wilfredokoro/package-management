@@ -20,5 +20,5 @@ sudo service sshd restart
 #
 sudo usermod -aG docker jenkins
 
-sudo hostname admin
+sudo hostnamectl set-hostname admin
 sudo su - jenkins
